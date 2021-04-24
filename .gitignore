@@ -17,8 +17,6 @@ yarn-error.log
 
 /coverage
 .idea
-yarn.lock
-package-lock.json
 *bak
 .vscode
 
@@ -38,3 +36,5 @@ screenshot
 .eslintcache
 
 build
+
+.DS_Store
