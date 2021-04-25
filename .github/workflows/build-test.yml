@@ -1,10 +1,10 @@
-name: GitHub Actions Deploy CI
+name: GitHub Actions Test and Build CI
 on:
   push:
     branches:
       - main
 jobs:
-  build-and-deploy:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,4 +13,5 @@ jobs:
         node-version: '16'
         check-latest: true
     - run: yarn install
+    - run: yarn test
     - run: yarn build
