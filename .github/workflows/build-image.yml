@@ -12,7 +12,7 @@ jobs:
     - name: Login to ACR
       uses: aliyun/acr-login@v1
       with:
-        login-server: https://registry.cn-hangzhou.aliyuncs.com
+        region-id: 'cn-hangzhou'
         access-key-id: "${{ secrets.ALIYUN_REGISTRY_USERNAME }}"
         access-key-secret: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
     - name: Build and push image
