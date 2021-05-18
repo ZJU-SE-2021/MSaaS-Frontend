@@ -9,15 +9,16 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Login to ACR
-      uses: aliyun/acr-login@v1
-      with:
-        login-server: https://registry.cn-hangzhou.aliyuncs.com
-        username: "${{ secrets.ALIYUN_REGISTRY_USERNAME }}"
-        password: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
+#    - name: Login to ACR
+#      uses: aliyun/acr-login@v1
+#      with:
+#        login-server: https://registry.cn-hangzhou.aliyuncs.com
+#        username: "${{ secrets.ALIYUN_REGISTRY_USERNAME }}"
+#        password: "${{ secrets.ALIYUN_REGISTRY_PASSWORD }}"
     - name: Build and push image
       env:
         IMAGE_TAG: latest # ${{ github.sha }}
       run: |
+        docker login --username=${{ secrets.ALIYUN_REGISTRY_USERNAME }} registry.cn-hangzhou.aliyuncs.com  --password=${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
         docker build -t registry.cn-hangzhou.aliyuncs.com/ncj/msaas:$IMAGE_TAG .
         docker push registry.cn-hangzhou.aliyuncs.com/ncj/msaas:$IMAGE_TAG
