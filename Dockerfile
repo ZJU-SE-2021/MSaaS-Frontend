@@ -7,3 +7,4 @@ RUN yarn install && yarn build
 
 FROM nginx:1.19.10-alpine
 COPY --from=build-env /build/dist /usr/share/nginx/html/
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
