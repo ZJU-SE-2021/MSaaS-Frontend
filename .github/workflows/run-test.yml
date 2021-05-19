@@ -1,4 +1,4 @@
-name: GitHub Actions Test and Build CI
+name: Test
 on:
   push:
     branches:
