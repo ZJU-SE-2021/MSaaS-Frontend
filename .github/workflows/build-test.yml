@@ -1,8 +1,8 @@
 name: GitHub Actions Test and Build CI
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - main
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
