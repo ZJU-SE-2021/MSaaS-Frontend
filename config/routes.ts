@@ -25,7 +25,7 @@
     path: './vis',
     name: 'visualization',
     icon: 'areaChart',
-    access: 'canAdmin',
+    // access: 'canAdmin',
     component: './Visualization/visualization',
   },
   {
