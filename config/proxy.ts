@@ -8,14 +8,14 @@
 export default {
   dev: {
     '/api/': {
-      target: 'https://preview.pro.ant.design',
+      target: 'https://msaas.app.ncj.wiki/',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
   },
   test: {
     '/api/': {
-      target: 'https://preview.pro.ant.design',
+      target: 'https://msaas.app.ncj.wiki/api',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
