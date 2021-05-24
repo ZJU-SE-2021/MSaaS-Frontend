@@ -22,6 +22,13 @@
     component: './Welcome',
   },
   {
+    path: './vis',
+    name: 'visualization',
+    icon: 'areaChart',
+    access: 'canAdmin',
+    component: './Visualization/visualization',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
