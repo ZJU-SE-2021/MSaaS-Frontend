@@ -1,6 +1,6 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-// import { join } from 'path';
+import { join } from 'path';
 
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
@@ -55,13 +55,14 @@ export default defineConfig({
     {
       requestLibPath: "import { request } from 'umi'",
       // 或者使用在线的版本
-      schemaPath: "https://msaas.app.ncj.wiki/api/swagger/v1/swagger.json",
-      // schemaPath: join(__dirname, 'oneapi.json'),
-      mock: true,
+      // schemaPath: "https://msaas.app.ncj.wiki/api/swagger/v1/swagger.json",
+      schemaPath: join(__dirname, 'oneapi.json'),
+      mock: false,
     },
     {
       requestLibPath: "import { request } from 'umi'",
-      schemaPath: 'https://msaas.app.ncj.wiki/api/swagger/v1/swagger.json',
+      // schemaPath: 'https://msaas.app.ncj.wiki/api/swagger/v1/swagger.json',
+      schemaPath: join(__dirname, 'oneapi.json'),
       projectName: 'swagger',
     },
   ],

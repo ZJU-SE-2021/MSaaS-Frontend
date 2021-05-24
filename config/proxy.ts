@@ -15,7 +15,7 @@ export default {
   },
   test: {
     '/api/': {
-      target: 'https://msaas.app.ncj.wiki/api',
+      target: 'https://msaas.app.ncj.wiki/',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },

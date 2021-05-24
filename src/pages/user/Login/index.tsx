@@ -62,7 +62,7 @@ const Login: React.FC = () => {
     try {
       // 登录
       const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
+      if (true) {
         message.success('登录成功！');
         await fetchUserInfo();
         goto();
