@@ -1,13 +1,13 @@
-import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { PageLoading } from '@ant-design/pro-layout';
-import { notification } from 'antd';
-import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { history, Link } from 'umi';
+import type {Settings as LayoutSettings} from '@ant-design/pro-layout';
+import {PageLoading} from '@ant-design/pro-layout';
+import {notification} from 'antd';
+import type {RequestConfig, RunTimeLayoutConfig} from 'umi';
+import {history, Link} from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import type { ResponseError } from 'umi-request';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
-import { BookOutlined, LinkOutlined } from '@ant-design/icons';
+import type {ResponseError} from 'umi-request';
+import {GetCurrentUser as queryCurrentUser} from './services/MSaaS/users';
+import {BookOutlined, LinkOutlined} from '@ant-design/icons';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -22,13 +22,12 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: API.CurrentUser;
-  fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  currentUser?: API.UserDto;
+  fetchUserInfo?: () => Promise<API.UserDto | undefined>;
 }> {
   const fetchUserInfo = async () => {
     try {
-      const currentUser = await queryCurrentUser();
-      return currentUser;
+      return await queryCurrentUser();
     } catch (error) {
       history.push(loginPath);
     }

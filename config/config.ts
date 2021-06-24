@@ -57,7 +57,7 @@ export default defineConfig({
       // 或者使用在线的版本
       // schemaPath: "https://msaas.app.ncj.wiki/api/swagger/v1/swagger.json",
       schemaPath: join(__dirname, 'oneapi.json'),
-      mock: true,
+      mock: false,
       projectName: 'MSaaS'
     },
   ],

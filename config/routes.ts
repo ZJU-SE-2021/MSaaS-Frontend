@@ -23,7 +23,7 @@
   },
   {
     path: './vis',
-    name: 'visualization',
+    name: 'Visualization',
     icon: 'areaChart',
     // access: 'canAdmin',
     component: './Visualization/visualization',
@@ -42,12 +42,6 @@
         component: './Welcome',
       },
     ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
   },
   {
     path: '/',
