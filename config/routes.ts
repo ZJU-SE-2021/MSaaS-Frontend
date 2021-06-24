@@ -25,7 +25,7 @@
     path: './vis',
     name: 'Visualization',
     icon: 'areaChart',
-    // access: 'canAdmin',
+    access: 'canAdmin',
     component: './Visualization/visualization',
   },
   {
@@ -33,13 +33,13 @@
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
-    component: './Admin',
+    // component: './Admin',
     routes: [
       {
         path: '/admin/sub-page',
         name: 'sub-page',
         icon: 'smile',
-        component: './Welcome',
+        component: './Admin',
       },
     ],
   },

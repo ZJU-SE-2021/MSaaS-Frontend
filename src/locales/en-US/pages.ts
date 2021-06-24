@@ -1,6 +1,7 @@
 export default {
+  'pages.layouts.title': 'MSaaS Medical System',
   'pages.layouts.userLayout.title':
-    'Ant Design is the most influential web design specification in Xihu district',
+    'Medical System as a Service is Laoheshan’s most technologically intelligent medical system',
   'pages.login.accountLogin.tab': 'Account Login',
   'pages.login.accountLogin.errorMessage': 'Incorrect username/password（admin/ant.design)',
   'pages.login.username.placeholder': 'Username: admin or user',

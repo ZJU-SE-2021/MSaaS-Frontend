@@ -80,10 +80,16 @@ const Login: React.FC = () => {
           <div className={styles.header}>
             <Link to="/">
               <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>MSaaS 后台系统</span>
+              <span className={styles.title}>{intl.formatMessage({
+                id: 'pages.layouts.title',
+                defaultMessage: 'MSaaS 后台系统',
+              })}</span>
             </Link>
           </div>
-          <div className={styles.desc}>Medical System as a Service 是西湖区最具技术力的智能医疗系统</div>
+          <div className={styles.desc}>{intl.formatMessage({
+            id: 'pages.layouts.userLayout.title',
+            defaultMessage: 'Medical System as a Service 是西湖区最具技术力的智能医疗系统',
+          })}</div>
         </div>
 
         <div className={styles.main}>

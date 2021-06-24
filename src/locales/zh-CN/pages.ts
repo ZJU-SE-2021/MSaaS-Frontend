@@ -1,5 +1,6 @@
 export default {
-  'pages.layouts.userLayout.title': 'Ant Design 是西湖区最具影响力的 Web 设计规范',
+  'pages.layouts.title': 'MSaaS 后台系统',
+  'pages.layouts.userLayout.title': 'Medical System as a Service 是老和山最具技术力的智能医疗系统',
   'pages.login.accountLogin.tab': '账户密码登录',
   'pages.login.accountLogin.errorMessage': '错误的用户名和密码（admin/ant.design)',
   'pages.login.username.placeholder': '用户名: admin or user',
