@@ -11,6 +11,7 @@ export default {
   'menu.admin.hospital-table': '医院管理',
   'menu.visualization': '大数据可视化',
   'menu.visualization.charts': '定制图表面板',
+  'menu.accountSetting': '个人设置',
   'menu.login': '登录',
   'menu.register': '注册',
   'menu.register.result': '注册结果',

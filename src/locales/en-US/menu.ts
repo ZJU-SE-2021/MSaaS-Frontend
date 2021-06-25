@@ -11,6 +11,7 @@ export default {
   'menu.admin.hospital-table': 'Hospital Management',
   'menu.visualization': 'Visualization',
   'menu.visualization.charts': 'Charts Panel',
+  'menu.accountSetting': 'Account Settings',
   'menu.login': 'Login',
   'menu.register': 'Register',
   'menu.register.result': 'Register Result',

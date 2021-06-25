@@ -84,6 +84,12 @@ export default [
     ],
   },
   {
+    name: 'accountSetting',
+    path: 'accountSetting',
+    component: './AccountSetting/accountSetting',
+    icon: 'setting'
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
