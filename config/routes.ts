@@ -1,4 +1,4 @@
-﻿export default [
+export default [
   {
     path: '/user',
     layout: false,
@@ -22,11 +22,37 @@
     component: './Welcome',
   },
   {
-    path: './vis',
+    path: '/doctor-area',
+    name: 'doctorArea',
+    icon: 'medicineBox',
+    access: 'isDoctor',
+    component: './DoctorPage/doctorPage',
+  },
+  {
+    name: 'addMedicalRecord',
+    path: '/doctor-area/addMedicalRecord',
+    component: './DoctorPage/addMedicalRecord',
+    hideInMenu: true,
+  },
+  {
+    path: '/vis',
     name: 'visualization',
     icon: 'areaChart',
-    access: 'canAdmin',
-    component: './Visualization/visualization',
+    routes: [
+      {
+        name: 'charts',
+        path: 'charts',
+        component: './Visualization/visualization',
+      },
+      {
+        path: 'map',
+        // TODO
+      },
+      {
+        path: 'global',
+        // TODO
+      }
+    ]
   },
   {
     path: '/admin',
@@ -35,20 +61,25 @@
     access: 'canAdmin',
     routes: [
       {
-        path: '/admin/sub-page',
+        path: 'sub-page',
         name: 'sub-page',
         icon: 'smile',
         component: './Admin',
       },
       {
-        path: '/admin/user-table-page',
+        path: 'user-table-page',
         name: 'user-table',
         component: './UserTable/userTable',
       },
       {
-        path: '/admin/appointment-table-page',
+        path: 'appointment-table-page',
         name: 'appointment-table',
         component: './AppointmentTable/appointmentTable',
+      },
+      {
+        path: 'hospital-table-page',
+        name: 'hospital-table',
+        component: './HospitalTable/hospitalTable',
       },
     ],
   },

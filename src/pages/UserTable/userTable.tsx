@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import {Button, Card} from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import ProTable, { TableDropdown } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import {GetUsers} from "@/services/MSaaS/users";
 
 
@@ -96,13 +96,6 @@ const columns: ProColumns<API.UserDto>[] = [
       >
         编辑
       </a>,
-      <TableDropdown
-        key="actionGroup"
-        onSelect={() => action?.reload()}
-        menus={[
-          { key: 'delete', name: '删除' },
-        ]}
-      />,
     ],
   },
 ];

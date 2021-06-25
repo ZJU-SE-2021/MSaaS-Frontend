@@ -5,30 +5,11 @@ import { PlusOutlined } from '@ant-design/icons';
 import {Button, Card} from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetAppointments} from "@/services/MSaaS/appointments";
+import {GetPhysicianAppointments} from "@/services/MSaaS/physicians";
+import { history } from 'umi';
 
 
 const columns: ProColumns<API.AppointmentDto>[] = [
-  {
-    dataIndex: 'id',
-    valueType: 'indexBorder',
-    width: 48,
-  },
-  {
-    title: '用户名',
-    dataIndex: 'username',
-    copyable: true,
-    ellipsis: true,
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-    editable: false,
-  },
   {
     title: '用户姓名',
     dataIndex: 'name',
@@ -44,39 +25,10 @@ const columns: ProColumns<API.AppointmentDto>[] = [
     },
   },
   {
-    title: '医生编号',
-    dataIndex: 'doctorId',
-    copyable: true,
-    ellipsis: true,
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-    editable: false,
-  },
-  {
-    title: '医生姓名',
-    dataIndex: 'doctorName',
-    copyable: true,
-    ellipsis: true,
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-  },
-  {
     title: '预约时间',
     dataIndex: 'time',
     valueType: 'date',
-    hideInSearch: true,
+    // hideInSearch: true,
     sorter: true,
   },
   {
@@ -95,10 +47,15 @@ const columns: ProColumns<API.AppointmentDto>[] = [
         key="editable"
         onClick={() => {
           // @ts-ignore
-          action?.startEditable?.(record.id);
+          history.push({
+            pathname: '/doctor-area/addMedicalRecord',
+            query: {
+              appointmentId: record.id,
+            },
+          })
         }}
       >
-        编辑
+        诊疗
       </a>,
     ],
   },
@@ -111,16 +68,17 @@ export default (): React.ReactNode => {
   return (
     <PageHeaderWrapper
       content={intl.formatMessage({
-        id: 'pages.admin.subPage.title',
-        defaultMessage: ' 这个页面只有管理员权限才能查看',
+        id: 'pages.physician.subPage.title',
+        defaultMessage: ' 这个页面只有医生才能查看',
       })}
     >
       <Card>
         <ProTable<API.AppointmentDto>
           columns={columns}
           actionRef={actionRef}
+          // request={GetUsers}
           request={async (params,sort,filter) => {
-            const data = await GetAppointments()
+            const data = await GetPhysicianAppointments()
             data.map((appointment) => {
               // @ts-ignore
               // eslint-disable-next-line no-param-reassign

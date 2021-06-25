@@ -25,6 +25,7 @@ export default {
   'pages.welcome.link': '欢迎使用',
   'pages.welcome.advancedLayout': '高级布局',
   'pages.welcome.alertMessage': '更快更强的重型组件，已经发布。',
+  'pages.physician.subPage.title': '这个页面只有医生才能查看',
   'pages.admin.subPage.title': ' 这个页面只有管理员权限才能查看',
   'pages.admin.subPage.alertMessage': 'umi ui 现已发布，欢迎使用 npm run ui 启动体验。',
   'pages.searchTable.createForm.newRule': '新建规则',

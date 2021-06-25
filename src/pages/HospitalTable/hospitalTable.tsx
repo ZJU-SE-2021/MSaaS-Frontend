@@ -5,32 +5,17 @@ import { PlusOutlined } from '@ant-design/icons';
 import {Button, Card} from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetAppointments} from "@/services/MSaaS/appointments";
+import {GetHospitals} from "@/services/MSaaS/hospitals";
 
 
-const columns: ProColumns<API.AppointmentDto>[] = [
+const columns: ProColumns<API.HospitalDto>[] = [
   {
     dataIndex: 'id',
     valueType: 'indexBorder',
     width: 48,
   },
   {
-    title: '用户名',
-    dataIndex: 'username',
-    copyable: true,
-    ellipsis: true,
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-    editable: false,
-  },
-  {
-    title: '用户姓名',
+    title: '医院名称',
     dataIndex: 'name',
     copyable: true,
     ellipsis: true,
@@ -44,8 +29,8 @@ const columns: ProColumns<API.AppointmentDto>[] = [
     },
   },
   {
-    title: '医生编号',
-    dataIndex: 'doctorId',
+    title: '医院地址',
+    dataIndex: 'address',
     copyable: true,
     ellipsis: true,
     formItemProps: {
@@ -56,36 +41,6 @@ const columns: ProColumns<API.AppointmentDto>[] = [
         },
       ],
     },
-    editable: false,
-  },
-  {
-    title: '医生姓名',
-    dataIndex: 'doctorName',
-    copyable: true,
-    ellipsis: true,
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-  },
-  {
-    title: '预约时间',
-    dataIndex: 'time',
-    valueType: 'date',
-    hideInSearch: true,
-    sorter: true,
-  },
-  {
-    title: '描述',
-    dataIndex: 'description',
-    valueType: 'text',
-    hideInSearch: true,
-    editable: false,
-    // sorter: true,
   },
   {
     title: '操作',
@@ -116,26 +71,27 @@ export default (): React.ReactNode => {
       })}
     >
       <Card>
-        <ProTable<API.AppointmentDto>
+        <ProTable<API.HospitalDto>
           columns={columns}
           actionRef={actionRef}
+          // request={GetUsers}
           request={async (params,sort,filter) => {
-            const data = await GetAppointments()
-            data.map((appointment) => {
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.username = appointment.user?.username;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.name = appointment.user?.name;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.doctorId = appointment.physician?.id;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.doctorName = appointment.physician?.name;
-              return appointment
-            })
+            const data = await GetHospitals()
+            // data.map((appointment) => {
+            //   // @ts-ignore
+            //   // eslint-disable-next-line no-param-reassign
+            //   appointment.username = appointment.user?.username;
+            //   // @ts-ignore
+            //   // eslint-disable-next-line no-param-reassign
+            //   appointment.name = appointment.user?.name;
+            //   // @ts-ignore
+            //   // eslint-disable-next-line no-param-reassign
+            //   appointment.doctorId = appointment.physician?.id;
+            //   // @ts-ignore
+            //   // eslint-disable-next-line no-param-reassign
+            //   appointment.doctorName = appointment.physician?.name;
+            //   return appointment
+            // })
             console.log(params, sort, filter)
             return {
               data,
@@ -168,7 +124,7 @@ export default (): React.ReactNode => {
             pageSize: 20,
           }}
           dateFormatter="string"
-          headerTitle="预约列表"
+          headerTitle="医院列表"
           toolBarRender={() => [
             <Button key="button" icon={<PlusOutlined />} type="primary">
               新建
