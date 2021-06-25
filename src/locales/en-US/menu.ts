@@ -9,6 +9,7 @@ export default {
   'menu.admin.user-table': 'User Management',
   'menu.admin.appointment-table': 'Appointment Management',
   'menu.admin.hospital-table': 'Hospital Management',
+  'menu.admin.department-table-page': 'Department Management',
   'menu.visualization': 'Visualization',
   'menu.visualization.charts': 'Charts Panel',
   'menu.accountSetting': 'Account Settings',

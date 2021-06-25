@@ -1,21 +1,21 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import {history, useIntl} from 'umi';
+import {useIntl} from 'umi';
 import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
 import {Button, Card} from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetHospitals} from "@/services/MSaaS/hospitals";
+import {GetDepartments} from "@/services/MSaaS/departments";
 
 
-const columns: ProColumns<API.HospitalDto>[] = [
+const columns: ProColumns<API.DepartmentDto>[] = [
   {
     dataIndex: 'id',
     valueType: 'indexBorder',
     width: 48,
   },
   {
-    title: '医院名称',
+    title: '科室',
     dataIndex: 'name',
     copyable: true,
     ellipsis: true,
@@ -29,8 +29,8 @@ const columns: ProColumns<API.HospitalDto>[] = [
     },
   },
   {
-    title: '医院地址',
-    dataIndex: 'address',
+    title: '部门',
+    dataIndex: 'section',
     copyable: true,
     ellipsis: true,
     formItemProps: {
@@ -55,25 +55,11 @@ const columns: ProColumns<API.HospitalDto>[] = [
       >
         编辑
       </a>,
-      <a
-        key="departmentTable"
-        onClick={() => {
-          // @ts-ignore
-          history.push({
-            pathname: '/admin/hospital-table-page/department-table-page',
-            query: {
-              hospitalId: record.id,
-            },
-          })
-        }}
-      >
-        查看科室
-      </a>,
     ],
   },
 ];
 
-export default (): React.ReactNode => {
+export default (props: { location: { query: { hospitalId: any; }; }; }): React.ReactNode => {
   const intl = useIntl();
   const actionRef = useRef<ActionType>();
 
@@ -85,12 +71,12 @@ export default (): React.ReactNode => {
       })}
     >
       <Card>
-        <ProTable<API.HospitalDto>
+        <ProTable<API.DepartmentDto>
           columns={columns}
           actionRef={actionRef}
           // request={GetUsers}
           request={async (params,sort,filter) => {
-            const data = await GetHospitals()
+            const data = await GetDepartments({hospitalId: props.location.query.hospitalId})
             // data.map((appointment) => {
             //   // @ts-ignore
             //   // eslint-disable-next-line no-param-reassign

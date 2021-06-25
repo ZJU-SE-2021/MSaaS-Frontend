@@ -9,6 +9,7 @@ export default {
   'menu.admin.user-table': '用户管理',
   'menu.admin.appointment-table': '预约管理',
   'menu.admin.hospital-table': '医院管理',
+  'menu.admin.department-table-page': '科室管理',
   'menu.visualization': '大数据可视化',
   'menu.visualization.charts': '定制图表面板',
   'menu.accountSetting': '个人设置',

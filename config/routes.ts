@@ -31,6 +31,7 @@ export default [
   {
     name: 'addMedicalRecord',
     path: '/doctor-area/addMedicalRecord',
+    access: 'isDoctor',
     component: './DoctorPage/addMedicalRecord',
     hideInMenu: true,
   },
@@ -80,6 +81,13 @@ export default [
         path: 'hospital-table-page',
         name: 'hospital-table',
         component: './HospitalTable/hospitalTable',
+      },
+      {
+        name: 'department-table-page',
+        path: 'hospital-table-page/department-table-page',
+        access: 'canAdmin',
+        component: './HospitalTable/departmentTable',
+        hideInMenu: true,
       },
     ],
   },
