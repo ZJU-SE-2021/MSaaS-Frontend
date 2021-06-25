@@ -33,13 +33,22 @@
     name: 'admin',
     icon: 'crown',
     access: 'canAdmin',
-    // component: './Admin',
     routes: [
       {
         path: '/admin/sub-page',
         name: 'sub-page',
         icon: 'smile',
         component: './Admin',
+      },
+      {
+        path: '/admin/user-table-page',
+        name: 'user-table',
+        component: './UserTable/userTable',
+      },
+      {
+        path: '/admin/appointment-table-page',
+        name: 'appointment-table',
+        component: './AppointmentTable/appointmentTable',
       },
     ],
   },
