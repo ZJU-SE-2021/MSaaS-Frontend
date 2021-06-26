@@ -1,10 +1,11 @@
-import { Tag, Space } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
-import React from 'react';
+import { Tag, Space, Modal } from 'antd';
+import { MessageOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
 import { useModel, SelectLang } from 'umi';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
+import ChatUI from '@/components/ChatUI/ChatUI';
 
 export type SiderTheme = 'light' | 'dark';
 
@@ -16,6 +17,7 @@ const ENVTagColor = {
 
 const GlobalHeaderRight: React.FC = () => {
   const { initialState } = useModel('@@initialState');
+  const [showChat, setShowChat] = useState(false);
 
   if (!initialState || !initialState.settings) {
     return null;
@@ -55,11 +57,19 @@ const GlobalHeaderRight: React.FC = () => {
       <span
         className={styles.action}
         onClick={() => {
-          window.open('https://pro.ant.design/docs/getting-started');
+          setShowChat(true);
         }}
       >
-        <QuestionCircleOutlined />
+        <MessageOutlined />
       </span>
+      <Modal
+        visible={showChat}
+        onOk={() => setShowChat(false)}
+        onCancel={() => setShowChat(false)}
+        footer={null}
+      >
+        <ChatUI />
+      </Modal>
       <Avatar />
       {REACT_APP_ENV && (
         <span>
