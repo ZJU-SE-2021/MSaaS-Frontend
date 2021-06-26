@@ -61,7 +61,6 @@ const GlobalHeaderRight: React.FC = () => {
           setShowChat(true);
         }}
       >
-        <MessageOutlined />
         <Badge count={msgCount} dot>
           <MessageOutlined />
         </Badge>
