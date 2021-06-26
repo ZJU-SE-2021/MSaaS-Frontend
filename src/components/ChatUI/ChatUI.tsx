@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { List, Avatar } from 'antd';
+import { Menu } from 'antd';
 import type { ChatMessageSendEvent, Message } from '@progress/kendo-react-conversational-ui';
 import { Chat } from '@progress/kendo-react-conversational-ui';
 import '@progress/kendo-theme-bootstrap/dist/all.css';
+import { UserOutlined } from '@ant-design/icons';
+import { useEffect } from 'react';
 
 const user = {
   id: 1,
@@ -29,22 +31,8 @@ const initialMessages: Message[] = [
   },
 ];
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
-
-const ChatUI = () => {
+// @ts-ignore
+const ChatUI = ({ setMsgCount }) => {
   const [messages, setMessages] = React.useState(initialMessages);
 
   // @ts-ignore
@@ -66,25 +54,21 @@ const ChatUI = () => {
     }, 1000);
   };
 
+  useEffect(() => {
+    setMsgCount(0);
+  }, []);
+
   return (
     <div style={{ display: 'flex', flex: '1 1', flexDirection: 'row' }}>
-      <div style={{ display: 'flex', flex: '1 1', minWidth: '300px' }}>
-        <List
-          style={{ display: 'flex', flex: '1 1' }}
-          itemLayout="horizontal"
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item>
-              <List.Item.Meta
-                avatar={
-                  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                }
-                title={<a href="https://ant.design">{item.title}</a>}
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              />
-            </List.Item>
-          )}
-        />
+      <div style={{ display: 'flex', flex: '1 1' }}>
+        <Menu>
+          <Menu.Item key="1" icon={<UserOutlined />}>
+            User 1
+          </Menu.Item>
+          <Menu.Item key="2" icon={<UserOutlined />}>
+            User 2
+          </Menu.Item>
+        </Menu>
       </div>
       <Chat
         user={user}

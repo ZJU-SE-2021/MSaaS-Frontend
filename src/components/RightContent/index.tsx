@@ -1,4 +1,4 @@
-import { Tag, Space, Modal } from 'antd';
+import { Tag, Space, Modal, Badge } from 'antd';
 import { MessageOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import { useModel, SelectLang } from 'umi';
@@ -18,6 +18,7 @@ const ENVTagColor = {
 const GlobalHeaderRight: React.FC = () => {
   const { initialState } = useModel('@@initialState');
   const [showChat, setShowChat] = useState(false);
+  const [msgCount, setMsgCount] = useState(3);
 
   if (!initialState || !initialState.settings) {
     return null;
@@ -61,6 +62,9 @@ const GlobalHeaderRight: React.FC = () => {
         }}
       >
         <MessageOutlined />
+        <Badge count={msgCount} dot>
+          <MessageOutlined />
+        </Badge>
       </span>
       <Modal
         visible={showChat}
@@ -68,7 +72,7 @@ const GlobalHeaderRight: React.FC = () => {
         onCancel={() => setShowChat(false)}
         footer={null}
       >
-        <ChatUI />
+        <ChatUI setMsgCount={setMsgCount} />
       </Modal>
       <Avatar />
       {REACT_APP_ENV && (
