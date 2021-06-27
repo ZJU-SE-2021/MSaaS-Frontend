@@ -1,0 +1,154 @@
+{
+    "date": {
+        "min": "2020-01-01",
+        "max": "2021-01-15"
+    },
+    "total_cases": {
+        "min": 1.0,
+        "max": 23314521.0
+    },
+    "new_cases": {
+        "min": -46076.0,
+        "max": 302506.0
+    },
+    "total_cases_per_million": {
+        "min": 0.001,
+        "max": 114773.83
+    },
+    "new_cases_per_million": {
+        "min": -2153.437,
+        "max": 8652.658
+    },
+    "stringency_index": {
+        "min": 0.0,
+        "max": 100.0
+    },
+    "recovery": {
+        "min": 0,
+        "max": 10146763
+    },
+    "new_cases_smoothed": {
+        "min": -1121.714,
+        "max": 250052.429
+    },
+    "new_deaths_smoothed": {
+        "min": -232.143,
+        "max": 3376.857
+    },
+    "new_cases_smoothed_per_million": {
+        "min": -276.825,
+        "max": 2648.773
+    },
+    "new_deaths_smoothed_per_million": {
+        "min": -10.921,
+        "max": 63.14
+    },
+    "total_deaths": {
+        "min": 1.0,
+        "max": 388697.0
+    },
+    "new_deaths": {
+        "min": -1918.0,
+        "max": 4462.0
+    },
+    "total_deaths_per_million": {
+        "min": 0.001,
+        "max": 1915.257
+    },
+    "new_deaths_per_million": {
+        "min": -76.445,
+        "max": 218.329
+    },
+    "reproduction_rate": {
+        "min": 0.0,
+        "max": 6.74
+    },
+    "new_tests": {
+        "min": -47510.0,
+        "max": 2945871.0
+    },
+    "total_tests": {
+        "min": 1.0,
+        "max": 267356204.0
+    },
+    "total_tests_per_thousand": {
+        "min": 0.0,
+        "max": 2838.978
+    },
+    "new_tests_per_thousand": {
+        "min": -0.786,
+        "max": 327.086
+    },
+    "tests_units": {
+        "min": "people tested",
+        "max": "units unclear"
+    },
+    "new_tests_smoothed": {
+        "min": 0.0,
+        "max": 1837541.0
+    },
+    "new_tests_smoothed_per_thousand": {
+        "min": 0.0,
+        "max": 48.488
+    },
+    "positive_rate": {
+        "min": 0.0,
+        "max": 0.636
+    },
+    "tests_per_case": {
+        "min": 1.6,
+        "max": 44258.7
+    },
+    "total_vaccinations": {
+        "min": 1.0,
+        "max": 12279180.0
+    },
+    "total_vaccinations_per_hundred": {
+        "min": 0.0,
+        "max": 25.34
+    },
+    "new_vaccinations_smoothed": {
+        "min": 51.0,
+        "max": 798707.0
+    },
+    "new_vaccinations_smoothed_per_million": {
+        "min": 3.0,
+        "max": 14332.0
+    },
+    "icu_patients": {
+        "min": 0.0,
+        "max": 23912.0
+    },
+    "icu_patients_per_million": {
+        "min": 0.0,
+        "max": 127.183
+    },
+    "hosp_patients": {
+        "min": 0.0,
+        "max": 132474.0
+    },
+    "hosp_patients_per_million": {
+        "min": 0.0,
+        "max": 1042.535
+    },
+    "new_vaccinations": {
+        "min": 3.0,
+        "max": 1130189.0
+    },
+    "weekly_hosp_admissions": {
+        "min": 0.0,
+        "max": 50887.393
+    },
+    "weekly_hosp_admissions_per_million": {
+        "min": 0.0,
+        "max": 2645.194
+    },
+    "weekly_icu_admissions": {
+        "min": 0.0,
+        "max": 10301.189
+    },
+    "weekly_icu_admissions_per_million": {
+        "min": 0.0,
+        "max": 888.829
+    }
+}

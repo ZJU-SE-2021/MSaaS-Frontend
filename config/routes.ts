@@ -46,8 +46,9 @@ export default [
         component: './Visualization/visualization',
       },
       {
+        name: 'map',
         path: 'map',
-        // TODO
+        component: './Visualization/MapView',
       },
       {
         path: 'global',

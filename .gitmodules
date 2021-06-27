@@ -1,0 +1,3 @@
+[submodule "src/pages/Visualization/data/world.geo.json"]
+	path = src/pages/Visualization/data/world.geo.json
+	url = https://github.com/johan/world.geo.json.git

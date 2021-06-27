@@ -12,6 +12,7 @@ export default {
   'menu.admin.department-table-page': 'Department Management',
   'menu.visualization': 'Visualization',
   'menu.visualization.charts': 'Charts Panel',
+  'menu.visualization.map': 'Map Panel',
   'menu.accountSetting': 'Account Settings',
   'menu.login': 'Login',
   'menu.register': 'Register',

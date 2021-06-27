@@ -12,6 +12,7 @@ export default {
   'menu.admin.department-table-page': '科室管理',
   'menu.visualization': '大数据可视化',
   'menu.visualization.charts': '定制图表面板',
+  'menu.visualization.map': '地图面板',
   'menu.accountSetting': '个人设置',
   'menu.login': '登录',
   'menu.register': '注册',
