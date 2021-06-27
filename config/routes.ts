@@ -46,14 +46,16 @@ export default [
         component: './Visualization/visualization',
       },
       {
+        name: 'map',
         path: 'map',
-        // TODO
+        component: './Visualization/MapView',
       },
       {
+        name: 'global',
         path: 'global',
-        // TODO
-      }
-    ]
+        component: './Visualization/Chart',
+      },
+    ],
   },
   {
     path: '/admin',
@@ -95,7 +97,7 @@ export default [
     name: 'accountSetting',
     path: 'accountSetting',
     component: './AccountSetting/accountSetting',
-    icon: 'setting'
+    icon: 'setting',
   },
   {
     path: '/',
