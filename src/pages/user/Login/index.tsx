@@ -156,7 +156,7 @@ const Login: React.FC = () => {
           >
             <Tabs activeKey={type} onChange={setType}>
               <Tabs.TabPane
-                key="account"
+                key="login"
                 tab={intl.formatMessage({
                   id: 'pages.login.accountLogin.tab',
                   defaultMessage: 'Account password login',
