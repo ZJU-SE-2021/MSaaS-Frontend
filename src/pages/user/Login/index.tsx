@@ -42,8 +42,7 @@ const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const { initialState, setInitialState } = useModel('@@initialState');
-  const [type, setType] = useState<string>('account');
-
+  const [type, setType] = useState<string>('login');
   const intl = useIntl();
 
   const fetchUserInfo = async () => {
@@ -80,10 +79,10 @@ const Login: React.FC = () => {
     try {
       // 注册
       const msg = await createUser({ ...values });
-      if (msg.token !== undefined) {
+      if (msg.id !== undefined) {
         message.success('注册成功！');
-        await fetchUserInfo();
         setType('login');
+        setSubmitting(false);
         return;
       }
       // 如果失败去设置用户错误信息
@@ -128,7 +127,7 @@ const Login: React.FC = () => {
             }}
             submitter={{
               searchConfig:
-                type === 'account'
+                type === 'login'
                   ? {
                       submitText: intl.formatMessage({
                         id: 'pages.login.submit',
@@ -151,7 +150,7 @@ const Login: React.FC = () => {
               },
             }}
             onFinish={async (values) => {
-              if (type === 'account') await handleLoginSubmit(values as API.LoginForm);
+              if (type === 'login') await handleLoginSubmit(values as API.LoginForm);
               else if (type === 'register') await handleRegisterSubmit(values as API.RegisterForm);
             }}
           >
@@ -181,7 +180,7 @@ const Login: React.FC = () => {
               />
             )}
 
-            {type === 'account' && (
+            {type === 'login' && (
               <>
                 <ProFormText
                   name="username"
@@ -322,7 +321,7 @@ const Login: React.FC = () => {
                 />
 
                 <ProFormDatePicker
-                  name="date"
+                  name="birthday"
                   label={intl.formatMessage({ id: 'pages.register.birthday.placeholder' })}
                   fieldProps={{
                     disabledDate,
@@ -391,7 +390,7 @@ const Login: React.FC = () => {
               style={{
                 marginBottom: 24,
               }}
-            ></div>
+            />
           </ProForm>
         </div>
       </div>
