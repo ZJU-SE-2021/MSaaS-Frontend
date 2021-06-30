@@ -1,83 +1,71 @@
 import * as React from 'react';
-import { Menu } from 'antd';
 import type { ChatMessageSendEvent, Message } from '@progress/kendo-react-conversational-ui';
 import { Chat } from '@progress/kendo-react-conversational-ui';
 import '@progress/kendo-theme-bootstrap/dist/all.css';
-import { UserOutlined } from '@ant-design/icons';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import * as signalR from '@microsoft/signalr';
 
 const user = {
   id: 1,
-  avatarUrl: 'https://via.placeholder.com/24/008000/008000.png',
+  avatarUrl: 'https://placeimg.com/24/24/people',
 };
 
 const bot = { id: 0 };
 
-const initialMessages: Message[] = [
-  {
-    author: bot,
-    suggestedActions: [
-      {
-        type: 'reply',
-        value: 'Oh, really?',
-      },
-      {
-        type: 'reply',
-        value: 'Thanks, but this is boring.',
-      },
-    ],
-    timestamp: new Date(),
-    text: "Hello, this is a demo bot. I don't do much, but I can count symbols!",
-  },
-];
+const initialMessages: Message[] = [];
 
 // @ts-ignore
-const ChatUI = ({ setMsgCount }) => {
+const ChatUI = ({ appointmentId }) => {
   const [messages, setMessages] = React.useState(initialMessages);
-
-  // @ts-ignore
-  const countReplayLength = (question) => {
-    // @ts-ignore
-    const { length } = question;
-    // @ts-ignore
-    const answer = `${question} contains exactly ${length} symbols.`;
-    return answer;
-  };
+  const [connection, setConnection] = useState<signalR.HubConnection>();
 
   const addNewMessage = (event: ChatMessageSendEvent) => {
-    const botResponse = { ...event.message };
-    botResponse.text = countReplayLength(event.message.text);
-    botResponse.author = bot;
     setMessages([...messages, event.message]);
-    setTimeout(() => {
-      setMessages((oldMessages) => [...oldMessages, botResponse]);
-    }, 1000);
+    // @ts-ignore
+    connection
+      .invoke('SendMessageToUser', {
+        AppointmentId: appointmentId,
+        Message: event.message.text,
+      })
+      .then()
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.error(error);
+      });
   };
 
   useEffect(() => {
-    setMsgCount(0);
+    const hubConnection = new signalR.HubConnectionBuilder()
+      .withUrl('https://msaas.app.ncj.wiki/api/hubs/chat')
+      .withAutomaticReconnect()
+      .configureLogging(signalR.LogLevel.Debug)
+      .build();
+    setConnection(hubConnection);
+
+    hubConnection
+      .start()
+      // eslint-disable-next-line no-console
+      .then(() => console.log('Connection started!'))
+      // eslint-disable-next-line no-console
+      .catch((err) => console.log('Error while establishing connection', err));
+    hubConnection.on('ReceiveMessage', ({ message, time }) => {
+      const doctorResponse = {
+        author: bot,
+        timestamp: new Date(Date.parse(time)),
+        text: message,
+      };
+      setMessages((oldMessages) => [...oldMessages, doctorResponse]);
+    });
   }, []);
 
   return (
-    <div style={{ display: 'flex', flex: '1 1', flexDirection: 'row' }}>
-      <div style={{ display: 'flex', flex: '1 1' }}>
-        <Menu>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            User 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<UserOutlined />}>
-            User 2
-          </Menu.Item>
-        </Menu>
-      </div>
-      <Chat
-        user={user}
-        messages={messages}
-        onMessageSend={addNewMessage}
-        placeholder={'Type a message...'}
-        width={400}
-      />
-    </div>
+    <Chat
+      user={user}
+      messages={messages}
+      onMessageSend={addNewMessage}
+      placeholder={'Type a message...'}
+      width={400}
+    />
   );
 };
 

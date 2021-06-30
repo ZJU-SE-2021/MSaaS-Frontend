@@ -10,6 +10,7 @@ export default {
     '/api/': {
       target: 'https://msaas.app.ncj.wiki/',
       changeOrigin: true,
+      ws: true,
       pathRewrite: { '^': '' },
     },
   },
