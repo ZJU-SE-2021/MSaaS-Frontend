@@ -7,6 +7,7 @@ import * as physicians from './physicians';
 import * as departments from './departments';
 import * as hospitals from './hospitals';
 import * as medicalRecords from './medicalRecords';
+import * as summary from './summary';
 import * as users from './users';
 export default {
   appointments,
@@ -14,5 +15,6 @@ export default {
   departments,
   hospitals,
   medicalRecords,
+  summary,
   users,
 };

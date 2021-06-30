@@ -9,6 +9,7 @@ declare namespace API {
     time?: string;
     description?: string;
     medicalRecord?: MedicalRecordDto;
+    state?: AppointmentState;
   };
 
   type AppointmentForm = {
@@ -16,6 +17,8 @@ declare namespace API {
     time?: string;
     description?: string;
   };
+
+  type AppointmentState = 'Created' | 'InProgress' | 'Finished';
 
   type DepartmentCreationForm = {
     hospitalId?: number;
@@ -27,7 +30,7 @@ declare namespace API {
     id?: number;
     name?: string;
     section?: string;
-    hospitalId?: number;
+    hospital?: HospitalDto;
   };
 
   type Gender = 'Male' | 'Female' | 'Other';
@@ -59,6 +62,7 @@ declare namespace API {
     symptom?: string;
     pastMedicalHistory?: string;
     diagnosis?: string;
+    prescription?: string;
   };
 
   type MedicalRecordForm = {
@@ -66,6 +70,7 @@ declare namespace API {
     symptom?: string;
     pastMedicalHistory?: string;
     diagnosis?: string;
+    prescription?: string;
   };
 
   type PhysicianDto = {
@@ -95,6 +100,11 @@ declare namespace API {
     birthday?: string;
     phone?: string;
     email?: string;
+  };
+
+  type SummaryDto = {
+    recentAppointment?: AppointmentDto;
+    recentMedicalRecord?: MedicalRecordDto;
   };
 
   type UpdateUserForm = {

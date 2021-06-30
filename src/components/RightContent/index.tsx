@@ -1,11 +1,9 @@
-import { Tag, Space, Modal, Badge } from 'antd';
-import { MessageOutlined } from '@ant-design/icons';
-import React, { useState } from 'react';
+import { Tag, Space } from 'antd';
+import React from 'react';
 import { useModel, SelectLang } from 'umi';
 import Avatar from './AvatarDropdown';
 import HeaderSearch from '../HeaderSearch';
 import styles from './index.less';
-import ChatUI from '@/components/ChatUI/ChatUI';
 
 export type SiderTheme = 'light' | 'dark';
 
@@ -17,8 +15,6 @@ const ENVTagColor = {
 
 const GlobalHeaderRight: React.FC = () => {
   const { initialState } = useModel('@@initialState');
-  const [showChat, setShowChat] = useState(false);
-  const [msgCount, setMsgCount] = useState(3);
 
   if (!initialState || !initialState.settings) {
     return null;
@@ -55,24 +51,6 @@ const GlobalHeaderRight: React.FC = () => {
         //   console.log('input', value);
         // }}
       />
-      <span
-        className={styles.action}
-        onClick={() => {
-          setShowChat(true);
-        }}
-      >
-        <Badge count={msgCount} dot>
-          <MessageOutlined />
-        </Badge>
-      </span>
-      <Modal
-        visible={showChat}
-        onOk={() => setShowChat(false)}
-        onCancel={() => setShowChat(false)}
-        footer={null}
-      >
-        <ChatUI setMsgCount={setMsgCount} />
-      </Modal>
       <Avatar />
       {REACT_APP_ENV && (
         <span>

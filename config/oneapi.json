@@ -12,9 +12,7 @@
   "paths": {
     "/api/Appointments": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "operationId": "GetAppointments",
         "responses": {
           "200": {
@@ -49,9 +47,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "operationId": "AddAppointment",
         "requestBody": {
           "content": {
@@ -99,9 +95,7 @@
     },
     "/api/Appointments/{id}": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "operationId": "GetAppointmentById",
         "parameters": [
           {
@@ -141,9 +135,7 @@
     },
     "/api/Physicians/Appointments": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "operationId": "GetPhysicianAppointments",
         "responses": {
           "200": {
@@ -181,9 +173,7 @@
     },
     "/api/Physicians/Appointments/{id}": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "operationId": "GetPhysicianAppointmentById",
         "parameters": [
           {
@@ -223,9 +213,7 @@
     },
     "/api/Departments": {
       "get": {
-        "tags": [
-          "Departments"
-        ],
+        "tags": ["Departments"],
         "operationId": "GetDepartments",
         "parameters": [
           {
@@ -273,9 +261,7 @@
     },
     "/api/Departments/{id}": {
       "get": {
-        "tags": [
-          "Departments"
-        ],
+        "tags": ["Departments"],
         "operationId": "GetDepartment",
         "parameters": [
           {
@@ -315,9 +301,7 @@
     },
     "/api/Admin/Departments/{id}": {
       "delete": {
-        "tags": [
-          "Departments"
-        ],
+        "tags": ["Departments"],
         "operationId": "DeleteDepartment",
         "parameters": [
           {
@@ -337,9 +321,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Departments"
-        ],
+        "tags": ["Departments"],
         "operationId": "UpdateDepartment",
         "parameters": [
           {
@@ -398,9 +380,7 @@
     },
     "/api/Admin/Departments": {
       "post": {
-        "tags": [
-          "Departments"
-        ],
+        "tags": ["Departments"],
         "operationId": "CreateDepartment",
         "requestBody": {
           "content": {
@@ -448,9 +428,7 @@
     },
     "/api/Hospitals": {
       "get": {
-        "tags": [
-          "Hospitals"
-        ],
+        "tags": ["Hospitals"],
         "operationId": "GetHospitals",
         "responses": {
           "200": {
@@ -488,9 +466,7 @@
     },
     "/api/Hospitals/{id}": {
       "get": {
-        "tags": [
-          "Hospitals"
-        ],
+        "tags": ["Hospitals"],
         "operationId": "GetHospital",
         "parameters": [
           {
@@ -530,9 +506,7 @@
     },
     "/api/Admin/Hospitals": {
       "post": {
-        "tags": [
-          "Hospitals"
-        ],
+        "tags": ["Hospitals"],
         "operationId": "CreateHospital",
         "requestBody": {
           "content": {
@@ -580,9 +554,7 @@
     },
     "/api/Admin/Hospitals/{id}": {
       "put": {
-        "tags": [
-          "Hospitals"
-        ],
+        "tags": ["Hospitals"],
         "operationId": "UpdateHospital",
         "parameters": [
           {
@@ -638,9 +610,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Hospitals"
-        ],
+        "tags": ["Hospitals"],
         "operationId": "DeleteHospital",
         "parameters": [
           {
@@ -663,9 +633,7 @@
     },
     "/api/MedicalRecords/{id}": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "operationId": "GetMedicalRecordById",
         "parameters": [
           {
@@ -705,9 +673,7 @@
     },
     "/api/Physicians/MedicalRecords/{id}": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "operationId": "GetPhysicianMedicalRecordById",
         "parameters": [
           {
@@ -744,9 +710,7 @@
         }
       },
       "put": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "operationId": "UpdateMedicalRecord",
         "parameters": [
           {
@@ -788,9 +752,7 @@
     },
     "/api/Physicians/MedicalRecords": {
       "post": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "operationId": "AddMedicalRecord",
         "requestBody": {
           "content": {
@@ -838,9 +800,7 @@
     },
     "/api/Physicians": {
       "get": {
-        "tags": [
-          "Physicians"
-        ],
+        "tags": ["Physicians"],
         "operationId": "GetPhysicians",
         "parameters": [
           {
@@ -888,9 +848,7 @@
     },
     "/api/Physicians/{id}": {
       "get": {
-        "tags": [
-          "Physicians"
-        ],
+        "tags": ["Physicians"],
         "operationId": "GetPhysicianById",
         "parameters": [
           {
@@ -930,9 +888,7 @@
     },
     "/api/Admin/Physicians/{id}": {
       "delete": {
-        "tags": [
-          "Physicians"
-        ],
+        "tags": ["Physicians"],
         "operationId": "DeletePhysician",
         "parameters": [
           {
@@ -955,9 +911,7 @@
     },
     "/api/Admin/Physicians": {
       "post": {
-        "tags": [
-          "Physicians"
-        ],
+        "tags": ["Physicians"],
         "operationId": "RegisterPhysician",
         "requestBody": {
           "content": {
@@ -1003,11 +957,38 @@
       },
       "x-swagger-router-controller": "physicians"
     },
+    "/api/Summary": {
+      "get": {
+        "tags": ["Summary"],
+        "operationId": "GetSummary",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "x-swagger-router-controller": "summary"
+    },
     "/api/Users/Login": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "Login",
         "requestBody": {
           "content": {
@@ -1095,9 +1076,7 @@
     },
     "/api/Users/Logout": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "Logout",
         "responses": {
           "200": {
@@ -1129,9 +1108,7 @@
     },
     "/api/Users": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "CreateUser",
         "requestBody": {
           "content": {
@@ -1219,9 +1196,7 @@
     },
     "/api/Users/Current": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "GetCurrentUser",
         "responses": {
           "200": {
@@ -1267,9 +1242,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "UpdateCurrentUser",
         "requestBody": {
           "content": {
@@ -1377,9 +1350,7 @@
     },
     "/api/Admin/Users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "GetUser",
         "parameters": [
           {
@@ -1456,9 +1427,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "UpdateUser",
         "parameters": [
           {
@@ -1574,9 +1543,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "DeleteUser",
         "parameters": [
           {
@@ -1659,9 +1626,7 @@
     },
     "/api/Admin/Users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "operationId": "GetUsers",
         "responses": {
           "200": {
@@ -1743,6 +1708,9 @@
           },
           "medicalRecord": {
             "$ref": "#/components/schemas/MedicalRecordDto"
+          },
+          "state": {
+            "$ref": "#/components/schemas/AppointmentState"
           }
         },
         "additionalProperties": false
@@ -1765,10 +1733,12 @@
         },
         "additionalProperties": false
       },
+      "AppointmentState": {
+        "enum": ["Created", "InProgress", "Finished"],
+        "type": "string"
+      },
       "DepartmentCreationForm": {
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "type": "object",
         "properties": {
           "hospitalId": {
@@ -1800,26 +1770,18 @@
             "type": "string",
             "nullable": true
           },
-          "hospitalId": {
-            "type": "integer",
-            "format": "int32"
+          "hospital": {
+            "$ref": "#/components/schemas/HospitalDto"
           }
         },
         "additionalProperties": false
       },
       "Gender": {
-        "enum": [
-          "Male",
-          "Female",
-          "Other"
-        ],
+        "enum": ["Male", "Female", "Other"],
         "type": "string"
       },
       "HospitalCreationForm": {
-        "required": [
-          "address",
-          "name"
-        ],
+        "required": ["address", "name"],
         "type": "object",
         "properties": {
           "name": {
@@ -1850,10 +1812,7 @@
         "additionalProperties": false
       },
       "LoginForm": {
-        "required": [
-          "password",
-          "username"
-        ],
+        "required": ["password", "username"],
         "type": "object",
         "properties": {
           "username": {
@@ -1900,6 +1859,10 @@
           "diagnosis": {
             "type": "string",
             "nullable": true
+          },
+          "prescription": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1920,6 +1883,10 @@
             "nullable": true
           },
           "diagnosis": {
+            "type": "string",
+            "nullable": true
+          },
+          "prescription": {
             "type": "string",
             "nullable": true
           }
@@ -1982,13 +1949,10 @@
             "nullable": true
           }
         },
-        "additionalProperties": { }
+        "additionalProperties": {}
       },
       "RegisterForm": {
-        "required": [
-          "password",
-          "username"
-        ],
+        "required": ["password", "username"],
         "type": "object",
         "properties": {
           "username": {
@@ -2018,6 +1982,18 @@
             "type": "string",
             "format": "email",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "SummaryDto": {
+        "type": "object",
+        "properties": {
+          "recentAppointment": {
+            "$ref": "#/components/schemas/AppointmentDto"
+          },
+          "recentMedicalRecord": {
+            "$ref": "#/components/schemas/MedicalRecordDto"
           }
         },
         "additionalProperties": false
@@ -2154,7 +2130,7 @@
   },
   "security": [
     {
-      "Bearer": [ ]
+      "Bearer": []
     }
   ]
 }
