@@ -87,12 +87,25 @@ export default (): React.ReactNode => {
         <ProTable<API.HospitalDto>
           columns={columns}
           actionRef={actionRef}
-          // request={GetUsers}
-          request={async (params, sort, filter) => {
-            const data = await GetHospitals();
-            console.log(params, sort, filter);
+          request={async (params) => {
+            let data = await GetHospitals();
+            data = data.filter((hospital) => {
+              return (
+                (params.name === undefined ||
+                  (hospital.name && hospital.name.includes(params.name))) &&
+                (params.address === undefined ||
+                  (hospital.address && hospital.address.includes(params.address)))
+              );
+            });
+            const total = data.length;
+            if (params.current && params.pageSize)
+              data = data.slice(
+                (params.current - 1) * params.pageSize,
+                params.current * params.pageSize,
+              );
             return {
               data,
+              total,
               success: true,
             };
           }}
