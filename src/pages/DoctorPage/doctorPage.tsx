@@ -1,15 +1,20 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import {useIntl} from 'umi';
+import { useIntl } from 'umi';
 import React, { useRef } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
-import {Button, Card} from 'antd';
+import { Card } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetPhysicianAppointments} from "@/services/MSaaS/physicians";
+import { GetPhysicianAppointments } from '@/services/MSaaS/physicians';
 import { history } from 'umi';
 
-
 const columns: ProColumns<API.AppointmentDto>[] = [
+  {
+    title: '预约编号',
+    dataIndex: 'id',
+    valueType: 'text',
+    hideInSearch: true,
+    width: 96,
+  },
   {
     title: '用户姓名',
     dataIndex: 'name',
@@ -42,7 +47,7 @@ const columns: ProColumns<API.AppointmentDto>[] = [
   {
     title: '操作',
     valueType: 'option',
-    render: (text, record, _, action) => [
+    render: (text, record) => [
       <a
         key="editable"
         onClick={() => {
@@ -52,7 +57,7 @@ const columns: ProColumns<API.AppointmentDto>[] = [
             query: {
               appointmentId: record.id,
             },
-          })
+          });
         }}
       >
         诊疗
@@ -76,35 +81,69 @@ export default (): React.ReactNode => {
         <ProTable<API.AppointmentDto>
           columns={columns}
           actionRef={actionRef}
-          // request={GetUsers}
-          request={async (params,sort,filter) => {
-            const data = await GetPhysicianAppointments()
-            data.map((appointment) => {
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.username = appointment.user?.username;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.name = appointment.user?.name;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.doctorId = appointment.physician?.id;
-              // @ts-ignore
-              // eslint-disable-next-line no-param-reassign
-              appointment.doctorName = appointment.physician?.name;
-              return appointment
-            })
-            console.log(params, sort, filter)
+          request={async (params, sort) => {
+            let data = await GetPhysicianAppointments();
+            const total = data.length;
+            data = data
+              .filter((appointment) => {
+                return (
+                  (params.time === undefined ||
+                    (appointment.time && appointment.time.slice(0, 10) === params.time)) &&
+                  (params.name === undefined ||
+                    (appointment.user &&
+                      appointment.user.name &&
+                      appointment.user.name.includes(params.name)))
+                );
+              })
+              .map((appointment) => {
+                // @ts-ignore
+                // eslint-disable-next-line no-param-reassign
+                appointment.username = appointment.user?.username;
+                // @ts-ignore
+                // eslint-disable-next-line no-param-reassign
+                appointment.name = appointment.user?.name;
+                // @ts-ignore
+                // eslint-disable-next-line no-param-reassign
+                appointment.doctorId = appointment.physician?.id;
+                // @ts-ignore
+                // eslint-disable-next-line no-param-reassign
+                appointment.doctorName = appointment.physician?.name;
+                return appointment;
+              });
+            if (sort !== undefined) {
+              switch (sort.time) {
+                case 'ascend':
+                  data.sort((a, b) => {
+                    // @ts-ignore
+                    return new Date(a.time) - new Date(b.time);
+                  });
+                  break;
+                case 'descend':
+                  data.sort((a, b) => {
+                    // @ts-ignore
+                    return new Date(b.time) - new Date(a.time);
+                  });
+                  break;
+                default:
+                // do nothing
+              }
+            }
+            if (params.current && params.pageSize)
+              data = data.slice(
+                (params.current - 1) * params.pageSize,
+                params.current * params.pageSize,
+              );
             return {
               data,
-              success: true
-            }
+              total,
+              success: true,
+            };
           }}
           editable={{
             type: 'multiple',
             onSave: async (rowKey, data, row) => {
-              console.log(rowKey, data, row)
-            }
+              console.log(rowKey, data, row);
+            },
           }}
           rowKey="id"
           search={{
@@ -127,11 +166,6 @@ export default (): React.ReactNode => {
           }}
           dateFormatter="string"
           headerTitle="预约列表"
-          toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
-              新建
-            </Button>
-          ]}
         />
       </Card>
     </PageHeaderWrapper>
