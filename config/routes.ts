@@ -75,11 +75,6 @@ export default [
         component: './UserTable/userTable',
       },
       {
-        path: 'appointment-table-page',
-        name: 'appointment-table',
-        component: './AppointmentTable/appointmentTable',
-      },
-      {
         path: 'hospital-table-page',
         name: 'hospital-table',
         component: './HospitalTable/hospitalTable',
