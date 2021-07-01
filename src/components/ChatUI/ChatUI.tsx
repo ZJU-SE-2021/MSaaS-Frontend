@@ -38,7 +38,6 @@ const ChatUI = ({ appointmentId }) => {
     const hubConnection = new signalR.HubConnectionBuilder()
       .withUrl('https://msaas.app.ncj.wiki/api/hubs/chat')
       .withAutomaticReconnect()
-      .configureLogging(signalR.LogLevel.Debug)
       .build();
     setConnection(hubConnection);
 
@@ -64,7 +63,7 @@ const ChatUI = ({ appointmentId }) => {
       messages={messages}
       onMessageSend={addNewMessage}
       placeholder={'Type a message...'}
-      width={400}
+      width={350}
     />
   );
 };

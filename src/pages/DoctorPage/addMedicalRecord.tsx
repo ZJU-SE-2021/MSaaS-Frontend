@@ -8,6 +8,7 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { useIntl } from '@@/plugin-locale/localeExports';
 import ChatUI from '@/components/ChatUI/ChatUI';
 import { AddMedicalRecord } from '@/services/MSaaS/medicalRecords';
+import VideoUI from '@/components/VideoUI/VideoUI';
 
 export default (props: { location: { query: { appointmentId: any } } }) => {
   const intl = useIntl();
@@ -19,6 +20,23 @@ export default (props: { location: { query: { appointmentId: any } } }) => {
       })}
     >
       <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <ProCard
+          title="视频诊疗"
+          style={{
+            display: 'flex',
+            flex: '1',
+            flexDirection: 'column',
+            margin: '10px',
+          }}
+          collapsible
+          defaultCollapsed={true}
+          bordered
+          headerBordered
+        >
+          <VideoUI appointmentID={props.location.query.appointmentId} />
+        </ProCard>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Card
           title="在线诊断"
           style={{
@@ -26,7 +44,7 @@ export default (props: { location: { query: { appointmentId: any } } }) => {
             flex: '1',
             flexDirection: 'column',
             margin: '10px',
-            maxWidth: '450px',
+            maxWidth: '400px',
           }}
         >
           <ChatUI appointmentId={props.location.query.appointmentId} />

@@ -13,6 +13,12 @@ export default {
       ws: true,
       pathRewrite: { '^': '' },
     },
+    '/peerjs/': {
+      target: 'https://msaas.app.ncj.wiki/',
+      changeOrigin: true,
+      ws: true,
+      pathRewrite: { '^': '' },
+    },
   },
   test: {
     '/api/': {
