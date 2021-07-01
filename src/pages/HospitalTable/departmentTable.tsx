@@ -1,12 +1,11 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import {useIntl} from 'umi';
+import { useIntl } from 'umi';
 import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import {Button, Card} from 'antd';
+import { Button, Card } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetDepartments} from "@/services/MSaaS/departments";
-
+import { GetDepartments } from '@/services/MSaaS/departments';
 
 const columns: ProColumns<API.DepartmentDto>[] = [
   {
@@ -59,7 +58,7 @@ const columns: ProColumns<API.DepartmentDto>[] = [
   },
 ];
 
-export default (props: { location: { query: { hospitalId: any; }; }; }): React.ReactNode => {
+export default (props: { location: { query: { hospitalId: any } } }): React.ReactNode => {
   const intl = useIntl();
   const actionRef = useRef<ActionType>();
 
@@ -75,34 +74,33 @@ export default (props: { location: { query: { hospitalId: any; }; }; }): React.R
           columns={columns}
           actionRef={actionRef}
           // request={GetUsers}
-          request={async (params,sort,filter) => {
-            const data = await GetDepartments({hospitalId: props.location.query.hospitalId})
-            // data.map((appointment) => {
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.username = appointment.user?.username;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.name = appointment.user?.name;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.doctorId = appointment.physician?.id;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.doctorName = appointment.physician?.name;
-            //   return appointment
-            // })
-            console.log(params, sort, filter)
+          request={async (params) => {
+            let data = await GetDepartments({ hospitalId: props.location.query.hospitalId });
+            data = data.filter((department) => {
+              return (
+                (params.name === undefined ||
+                  (department.name && department.name.includes(params.name))) &&
+                (params.section === undefined ||
+                  (department.section && department.section.includes(params.section)))
+              );
+            });
+            const total = data.length;
+            if (params.current && params.pageSize)
+              data = data.slice(
+                (params.current - 1) * params.pageSize,
+                params.current * params.pageSize,
+              );
             return {
               data,
-              success: true
-            }
+              total,
+              success: true,
+            };
           }}
           editable={{
             type: 'multiple',
             onSave: async (rowKey, data, row) => {
-              console.log(rowKey, data, row)
-            }
+              console.log(rowKey, data, row);
+            },
           }}
           rowKey="id"
           search={{
@@ -128,7 +126,7 @@ export default (props: { location: { query: { hospitalId: any; }; }; }): React.R
           toolBarRender={() => [
             <Button key="button" icon={<PlusOutlined />} type="primary">
               新建
-            </Button>
+            </Button>,
           ]}
         />
       </Card>
