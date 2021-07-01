@@ -73,7 +73,6 @@ export default (props: { location: { query: { hospitalId: any } } }): React.Reac
         <ProTable<API.DepartmentDto>
           columns={columns}
           actionRef={actionRef}
-          // request={GetUsers}
           request={async (params) => {
             let data = await GetDepartments({ hospitalId: props.location.query.hospitalId });
             data = data.filter((department) => {

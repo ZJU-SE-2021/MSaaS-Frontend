@@ -1,11 +1,10 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { useIntl } from 'umi';
 import React, { useRef } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
-import { Button, Card } from 'antd';
+import { Card, message } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { GetUsers } from '@/services/MSaaS/users';
+import { DeleteUser, GetUsers, UpdateUser } from '@/services/MSaaS/users';
 
 const columns: ProColumns<API.UserDto>[] = [
   {
@@ -157,6 +156,18 @@ export default (): React.ReactNode => {
           }}
           editable={{
             type: 'multiple',
+            onSave: async (_, data) => {
+              // @ts-ignore
+              UpdateUser({ id: data.id }, { ...data })
+                .then(() => message.success('更新成功！'))
+                .catch(() => message.error('更新失败！'));
+            },
+            onDelete: async (_, data) => {
+              // @ts-ignore
+              DeleteUser({ id: data.id })
+                .then(() => message.success('删除成功！'))
+                .catch(() => message.error('删除失败！'));
+            },
           }}
           rowKey="id"
           search={{
@@ -179,11 +190,6 @@ export default (): React.ReactNode => {
           }}
           dateFormatter="string"
           headerTitle="用户列表"
-          toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
-              新建
-            </Button>,
-          ]}
         />
       </Card>
     </PageHeaderWrapper>
