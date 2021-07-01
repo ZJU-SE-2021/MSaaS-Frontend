@@ -1,12 +1,11 @@
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import {history, useIntl} from 'umi';
+import { history, useIntl } from 'umi';
 import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import {Button, Card} from 'antd';
+import { Button, Card } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {GetHospitals} from "@/services/MSaaS/hospitals";
-
+import { GetHospitals } from '@/services/MSaaS/hospitals';
 
 const columns: ProColumns<API.HospitalDto>[] = [
   {
@@ -64,7 +63,7 @@ const columns: ProColumns<API.HospitalDto>[] = [
             query: {
               hospitalId: record.id,
             },
-          })
+          });
         }}
       >
         查看科室
@@ -89,34 +88,19 @@ export default (): React.ReactNode => {
           columns={columns}
           actionRef={actionRef}
           // request={GetUsers}
-          request={async (params,sort,filter) => {
-            const data = await GetHospitals()
-            // data.map((appointment) => {
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.username = appointment.user?.username;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.name = appointment.user?.name;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.doctorId = appointment.physician?.id;
-            //   // @ts-ignore
-            //   // eslint-disable-next-line no-param-reassign
-            //   appointment.doctorName = appointment.physician?.name;
-            //   return appointment
-            // })
-            console.log(params, sort, filter)
+          request={async (params, sort, filter) => {
+            const data = await GetHospitals();
+            console.log(params, sort, filter);
             return {
               data,
-              success: true
-            }
+              success: true,
+            };
           }}
           editable={{
             type: 'multiple',
             onSave: async (rowKey, data, row) => {
-              console.log(rowKey, data, row)
-            }
+              console.log(rowKey, data, row);
+            },
           }}
           rowKey="id"
           search={{
@@ -142,7 +126,7 @@ export default (): React.ReactNode => {
           toolBarRender={() => [
             <Button key="button" icon={<PlusOutlined />} type="primary">
               新建
-            </Button>
+            </Button>,
           ]}
         />
       </Card>
