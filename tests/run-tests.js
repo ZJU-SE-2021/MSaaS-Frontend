@@ -31,7 +31,7 @@ startServer.stdout.on('data', (data) => {
   console.log(data.toString());
   // hack code , wait umi
   if (
-    (!once && data.toString().indexOf('Compiled successfully') >= 0) ||
+    (!once && data.toString().indexOf('Compiled') >= 0) ||
     data.toString().indexOf('Theme generated successfully') >= 0
   ) {
     // eslint-disable-next-line
