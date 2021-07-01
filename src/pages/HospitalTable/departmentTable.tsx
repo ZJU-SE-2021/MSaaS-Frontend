@@ -19,7 +19,14 @@ const columns: ProColumns<API.DepartmentDto>[] = [
     width: 48,
   },
   {
-    title: '科室',
+    title: '科室编号',
+    dataIndex: 'id',
+    valueType: 'text',
+    editable: false,
+    width: 96,
+  },
+  {
+    title: '科室名称',
     dataIndex: 'name',
     copyable: true,
     ellipsis: true,
@@ -103,12 +110,13 @@ export default (props: { location: { query: { hospitalId: any } } }): React.Reac
           editable={{
             type: 'multiple',
             onSave: async (_, data) => {
+              console.log(data);
               // @ts-ignore
               if (data.newItem) {
-                // @ts-ignore
                 CreateDepartment({
-                  section: data.section,
+                  // @ts-ignore
                   name: data.name,
+                  section: data.section,
                   hospitalId: props.location.query.hospitalId,
                 })
                   .then(() => message.success('创建成功！'))
@@ -156,7 +164,7 @@ export default (props: { location: { query: { hospitalId: any } } }): React.Reac
               type="primary"
               onClick={() => {
                 actionRef.current?.addEditRecord?.({
-                  id: (Math.random() * 1000000).toFixed(0),
+                  id: 'New Item',
                   newItem: true,
                 });
               }}

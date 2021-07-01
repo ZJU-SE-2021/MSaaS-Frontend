@@ -166,7 +166,7 @@ export default (): React.ReactNode => {
               type="primary"
               onClick={() => {
                 actionRef.current?.addEditRecord?.({
-                  id: (Math.random() * 1000000).toFixed(0),
+                  id: 'New Item',
                   newItem: true,
                 });
               }}
