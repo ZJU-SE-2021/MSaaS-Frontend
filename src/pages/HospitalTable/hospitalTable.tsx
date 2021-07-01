@@ -2,10 +2,15 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history, useIntl } from 'umi';
 import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Card } from 'antd';
+import { Button, Card, message } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { GetHospitals } from '@/services/MSaaS/hospitals';
+import {
+  CreateHospital,
+  DeleteHospital,
+  GetHospitals,
+  UpdateHospital,
+} from '@/services/MSaaS/hospitals';
 
 const columns: ProColumns<API.HospitalDto>[] = [
   {
@@ -111,8 +116,26 @@ export default (): React.ReactNode => {
           }}
           editable={{
             type: 'multiple',
-            onSave: async (rowKey, data, row) => {
-              console.log(rowKey, data, row);
+            onSave: async (_, data) => {
+              // @ts-ignore
+              if (data.newItem) {
+                // @ts-ignore
+                CreateHospital({ name: data.name, address: data.address })
+                  .then(() => message.success('创建成功！'))
+                  .catch(() => message.error('创建失败！'));
+                actionRef.current?.reload();
+              } else {
+                // @ts-ignore
+                UpdateHospital({ id: data.id }, { ...data })
+                  .then(() => message.success('更新成功！'))
+                  .catch(() => message.error('更新失败！'));
+              }
+            },
+            onDelete: async (_, data) => {
+              // @ts-ignore
+              DeleteHospital({ id: data.id })
+                .then(() => message.success('删除成功！'))
+                .catch(() => message.error('删除失败！'));
             },
           }}
           rowKey="id"
@@ -137,7 +160,17 @@ export default (): React.ReactNode => {
           dateFormatter="string"
           headerTitle="医院列表"
           toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
+            <Button
+              key="button"
+              icon={<PlusOutlined />}
+              type="primary"
+              onClick={() => {
+                actionRef.current?.addEditRecord?.({
+                  id: (Math.random() * 1000000).toFixed(0),
+                  newItem: true,
+                });
+              }}
+            >
               新建
             </Button>,
           ]}

@@ -2,10 +2,15 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { useIntl } from 'umi';
 import React, { useRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Card } from 'antd';
+import { Button, Card, message } from 'antd';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { GetDepartments } from '@/services/MSaaS/departments';
+import {
+  CreateDepartment,
+  DeleteDepartment,
+  GetDepartments,
+  UpdateDepartment,
+} from '@/services/MSaaS/departments';
 
 const columns: ProColumns<API.DepartmentDto>[] = [
   {
@@ -97,8 +102,30 @@ export default (props: { location: { query: { hospitalId: any } } }): React.Reac
           }}
           editable={{
             type: 'multiple',
-            onSave: async (rowKey, data, row) => {
-              console.log(rowKey, data, row);
+            onSave: async (_, data) => {
+              // @ts-ignore
+              if (data.newItem) {
+                // @ts-ignore
+                CreateDepartment({
+                  section: data.section,
+                  name: data.name,
+                  hospitalId: props.location.query.hospitalId,
+                })
+                  .then(() => message.success('创建成功！'))
+                  .catch(() => message.error('创建失败！'));
+                actionRef.current?.reload();
+              } else {
+                // @ts-ignore
+                UpdateDepartment({ id: data.id }, { ...data })
+                  .then(() => message.success('更新成功！'))
+                  .catch(() => message.error('更新失败！'));
+              }
+            },
+            onDelete: async (_, data) => {
+              // @ts-ignore
+              DeleteDepartment({ id: data.id })
+                .then(() => message.success('删除成功！'))
+                .catch(() => message.error('删除失败！'));
             },
           }}
           rowKey="id"
@@ -123,7 +150,17 @@ export default (props: { location: { query: { hospitalId: any } } }): React.Reac
           dateFormatter="string"
           headerTitle="医院列表"
           toolBarRender={() => [
-            <Button key="button" icon={<PlusOutlined />} type="primary">
+            <Button
+              key="button"
+              icon={<PlusOutlined />}
+              type="primary"
+              onClick={() => {
+                actionRef.current?.addEditRecord?.({
+                  id: (Math.random() * 1000000).toFixed(0),
+                  newItem: true,
+                });
+              }}
+            >
               新建
             </Button>,
           ]}
