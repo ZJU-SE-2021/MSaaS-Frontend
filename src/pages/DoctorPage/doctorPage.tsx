@@ -83,7 +83,6 @@ export default (): React.ReactNode => {
           actionRef={actionRef}
           request={async (params, sort) => {
             let data = await GetPhysicianAppointments();
-            const total = data.length;
             data = data
               .filter((appointment) => {
                 return (
@@ -110,6 +109,7 @@ export default (): React.ReactNode => {
                 appointment.doctorName = appointment.physician?.name;
                 return appointment;
               });
+            const total = data.length;
             if (sort !== undefined) {
               switch (sort.time) {
                 case 'ascend':
